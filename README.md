@@ -1,45 +1,24 @@
 # MoneyTransfer
- MoneyTransfer Bank application with RestAPI
+Sample application with RestFul Endpoint with below operations supporting concurrent calls
+1.AccountCreation
+2.Debit
+3.Credit
+4.FundsTransfer 
 
-
-moneytransfer
-Money Transfer webservice supporting concurrent calls
-
-Application starts webserver on http://localhost:8080 by default
+Application starts webserver on http://localhost:8083 by default when LaunchApplication.java is Ran as a Main Application.
 
 Jetty - as a server layer
-Jersey - as a JAX-RS implementation
+JAX-RS implementation
 JUnit 5 - as a unit test framework
-Rest Assured - for API tests
+h2database - inmemory databse
 Application may be started from standalone jar:
 
-java -jar moneytransfer-1.0-SNAPSHOT-jar-with-dependencies.jar
+java -jar money-transfer-1.0.0-SNAPSHOT.jar
 or as a maven goal
 
 mvn exec:java
 Account API - /accounts
-GET - retrieves all accounts from database
 
-Response: Status: 200 OK
-
-[
-    {
-        "id": "2b042944-7b78-4468-87a7-573582b24911",
-        "balance": 80.1
-    },
-    {
-        "id": "a9e0bcc6-72dd-43ae-8879-62002b0f686d",
-        "balance": 15
-    },
-    {
-        "id": "97463a3b-8ad9-4ad5-ae7a-37d3807795f7",
-        "balance": 130.1
-    },
-    {
-        "id": "db7c979a-073b-4fb7-9528-9de1807c1727",
-        "balance": 100.1
-    }
-]
 POST - persists new account Request Body - Account object
 
 Sample request:

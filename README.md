@@ -18,7 +18,8 @@ mvn clean test install
 
 Application may be started from standalone jar:
 
-java -jar money-transfer-1.0.0-SNAPSHOT.jar
+java -jar money-transfer-1.0.0-SNAPSHOT-dependencies.jar
+
 or as a maven goal
 
 mvn exec:java
@@ -26,6 +27,7 @@ mvn exec:java
 LaunchApplication creates 2 Accounts , which can be used for Testing
 
 http://localhost:8083/moneyTransfer/account/1
+
 http://localhost:8083/moneyTransfer/account/2
 
 # Available Services

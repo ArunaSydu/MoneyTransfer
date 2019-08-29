@@ -1,6 +1,7 @@
 package com.app.moneytransfer;
 
 import com.app.moneytransfer.exception.MoneyTransferExceptionHandler;
+import com.app.moneytransfer.model.Account;
 import com.app.moneytransfer.service.AccountService;
 import com.app.moneytransfer.service.FundsTransferService;
 import com.app.moneytransfer.service.UserService;
@@ -8,6 +9,8 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
+
+import java.math.BigDecimal;
 
 /**
  * @author Aruna
@@ -47,10 +50,21 @@ public class LaunchApplication {
 						+  MoneyTransferExceptionHandler.class.getCanonicalName());
 		try {
 			server.start();
+			long fromAccountId = createAccount("FromAccountName",BigDecimal.valueOf(100));
+			long toAccountId = createAccount("ToAccountName",BigDecimal.valueOf(100));
+			System.out.println(" fromAccountId "+fromAccountId + " toAccountId "+toAccountId );
 			server.join();
 		} finally {
 			server.destroy();
 		}
+	}
+
+
+	private static long createAccount(String userName, BigDecimal amount){
+		AccountService service = new AccountService();
+		Account account = new Account(userName,amount,"USD");
+		Account createdAcc = service.createAccount(account);
+		return createdAcc.getAccountId();
 	}
 
 }

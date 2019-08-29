@@ -73,8 +73,7 @@ public abstract class TestService {
             context.setContextPath("/");
             server.setHandler(context);
             ServletHolder servletHolder = context.addServlet(ServletContainer.class, "/*");
-            servletHolder.setInitParameter("jersey.config.server.provider.classnames",
-                      UserService.class.getCanonicalName() + "," +
+            servletHolder.setInitParameter("jersey.config.server.provider.classnames",                      
                             AccountService.class.getCanonicalName() + "," +
                             FundsTransferService.class.getCanonicalName()+","+
                             MoneyTransferExceptionHandler.class.getCanonicalName());

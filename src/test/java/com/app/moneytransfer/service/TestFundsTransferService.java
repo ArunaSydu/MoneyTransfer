@@ -35,7 +35,7 @@ public class TestFundsTransferService extends TestService {
     @Test
     public void testDeposit() throws IOException, URISyntaxException {       
         URI uri = builder.setPath("/account/"+fromAcctId+"/deposit/100").build();
-        HttpPut request = new HttpPut(uri);
+        HttpPost request = new HttpPost(uri);
         request.setHeader("Content-type", "application/json");
         HttpResponse response = client.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
@@ -54,7 +54,7 @@ public class TestFundsTransferService extends TestService {
     @Test
     public void testWithDrawSufficientFund() throws IOException, URISyntaxException {
         URI uri = builder.setPath("/account/"+fromAcctId+"/withdraw/1").build();
-        HttpPut request = new HttpPut(uri);
+        HttpPost request = new HttpPost(uri);
         request.setHeader("Content-type", "application/json");
         HttpResponse response = client.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
@@ -73,7 +73,7 @@ public class TestFundsTransferService extends TestService {
     @Test
     public void testWithDrawNonSufficientFund() throws IOException, URISyntaxException {
         URI uri = builder.setPath("/account/"+fromAcctId+"/withdraw/1000").build();
-        HttpPut request = new HttpPut(uri);
+        HttpPost request = new HttpPost(uri);
         request.setHeader("Content-type", "application/json");
         HttpResponse response = client.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();

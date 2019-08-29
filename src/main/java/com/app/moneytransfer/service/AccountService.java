@@ -83,7 +83,7 @@ public class AccountService implements IAccountService {
      * @param amount
      * @return
      */
-    @PUT
+    @POST
     @Path("/{accountId}/deposit/{amount}")
     public Account deposit(@PathParam("accountId") long accountId,@PathParam("amount") BigDecimal amount){
         if (amount.compareTo(BigDecimal.ZERO) <=0){
@@ -98,7 +98,7 @@ public class AccountService implements IAccountService {
      * @param amount
      * @return
      */
-    @PUT
+    @POST
     @Path("/{accountId}/withdraw/{amount}")
     public Account withdraw(@PathParam("accountId") long accountId,@PathParam("amount") BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <=0){

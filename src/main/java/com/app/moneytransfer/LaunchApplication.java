@@ -4,7 +4,6 @@ import com.app.moneytransfer.exception.MoneyTransferExceptionHandler;
 import com.app.moneytransfer.model.Account;
 import com.app.moneytransfer.service.AccountService;
 import com.app.moneytransfer.service.FundsTransferService;
-import com.app.moneytransfer.service.UserService;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -14,7 +13,7 @@ import java.math.BigDecimal;
 
 /**
  * @author Aruna
- * This is the main Class which Starts the container and Initialize UserService,AccountService,TransactionService
+ * This is the main Class which Starts the container and Initialize AccountService,TransactionService
  */
 public class LaunchApplication {
 	
@@ -43,9 +42,8 @@ public class LaunchApplication {
 		context.setContextPath(CONTEXT_PATH);
 		server.setHandler(context);
 		ServletHolder servletHolder = context.addServlet(ServletContainer.class, PATH);
-		servletHolder.setInitParameter(INIT_PARAM,
-					UserService.class.getCanonicalName() + ","
-						+ AccountService.class.getCanonicalName() + ","
+		servletHolder.setInitParameter(INIT_PARAM,					
+						AccountService.class.getCanonicalName() + ","
 						+  FundsTransferService.class.getCanonicalName()+","
 						+  MoneyTransferExceptionHandler.class.getCanonicalName());
 		try {

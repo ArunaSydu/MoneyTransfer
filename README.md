@@ -32,20 +32,6 @@ http://localhost:8083/moneyTransfer/account/2
 
 # Available Services
 
-
-| HTTP METHOD        | PATH           |  USAGE |
-| ------------- |:-------------|:-----|
-
-| GET     | /moneyTransfer/account/{accountId} | get account by accountId |
-| GET     | /moneyTransfer/account/all  |   get all accounts |
-| GET     | /moneyTransfer/account/{accountId}/balance  |   get account balance by accountId |
-| PUT     | /moneyTransfer/account/create     |  create a new account |
-| DELETE  | /moneyTransfer/account/{accountId}     | remove account by accountId |
-| POST    | /moneyTransfer/account/{accountId}/withdraw/{amount}    |  withdraw money from account |
-| POST    | /moneyTransfer/account/{accountId}/deposit/{amount}     |  deposit money to account |
-| POST    | /moneyTransfer/transaction    |  perform transaction between 2 user accounts |
-
-
 ## Sample JSON for Account and Transaction
 
 ##### Account:

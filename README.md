@@ -1,13 +1,21 @@
 # MoneyTransfer
 Sample application with RestFul Endpoint with below operations supporting concurrent calls
 
-1.AccountCreation
+1.AccountService which supports 
 
-2.Debit
+Name			EndPoint						Method
 
-3.Credit
+createAccount           /create				 			PUT
 
-4.FundsTransfer 
+getBalance              /<<acctNo>>/balance   				        GET
+
+getAccount	        /<<acctNo>>			 			GET
+
+deposit		        /<<accountId>>/withdraw/<<amount>>	                POST
+
+withdraw                /<<acctNo>>/deposit/<<amount>>		                POST
+
+FundsTransfer 
 
 Application starts webserver on http://localhost:8083 by default when LaunchApplication.java is Ran as a Main Application.
 

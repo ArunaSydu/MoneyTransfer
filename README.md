@@ -1,28 +1,20 @@
 # MoneyTransfer
 Sample application with RestFul Endpoint with below operations supporting concurrent calls
 
-1.AccountService which supports 
-
-Name			EndPoint						Method
-
-createAccount           /create				 			PUT
-
-getBalance              /<<acctNo>>/balance   				        GET
-
-getAccount	        /<<acctNo>>			 			GET
-
-deposit		        /<<accountId>>/withdraw/<<amount>>	                POST
-
-withdraw                /<<acctNo>>/deposit/<<amount>>		                POST
-
-FundsTransfer 
-
 Application starts webserver on http://localhost:8083 by default when LaunchApplication.java is Ran as a Main Application.
 
-Jetty - as a server layer
+Using the Below Tech Stack
+
+Jetty  as a server layer
 JAX-RS implementation
-JUnit 5 - as a unit test framework
-h2database - inmemory databse
+JUnit  as a unit test framework
+H2  in memory database
+
+How to Run the demo App
+
+Build the project using 
+
+mvn clean test install
 
 Application may be started from standalone jar:
 
@@ -30,63 +22,73 @@ java -jar money-transfer-1.0.0-SNAPSHOT.jar
 or as a maven goal
 
 mvn exec:java
-Account API - /accounts
 
-POST - persists new account Request Body - Account object
+LaunchApplication creates 2 Accounts , which can be used for Testing
 
-Sample request:
+http://localhost:8083/moneyTransfer/account/1
+http://localhost:8083/moneyTransfer/account/2
 
-{
-	"id":"2",
-	"balance":"5.0"
+# Available Services
+
+
+| HTTP METHOD        | PATH           |  USAGE |
+| ------------- |:-------------|:-----|
+
+| GET     | /moneyTransfer/account/{accountId} | get account by accountId |
+| GET     | /moneyTransfer/account/all  |   get all accounts |
+| GET     | /moneyTransfer/account/{accountId}/balance  |   get account balance by accountId |
+| PUT     | /moneyTransfer/account/create     |  create a new account |
+| DELETE  | /moneyTransfer/account/{accountId}     | remove account by accountId |
+| POST    | /moneyTransfer/account/{accountId}/withdraw/{amount}    |  withdraw money from account |
+| POST    | /moneyTransfer/account/{accountId}/deposit/{amount}     |  deposit money to account |
+| POST    | /moneyTransfer/transaction    |  perform transaction between 2 user accounts |
+
+
+## Sample JSON for Account and Transaction
+
+##### Account:
+```json
+{  
+   "userName":"Test",
+   "balance":10.0000,
+   "currencyCode":"GBP"
 }
-Sample response: Status: 200 OK
+```
 
-{
-	"id":"2",
-	"balance":"5.0"
+#####  Transaction:
+```json
+{  
+   "currencyCode":"EUR",
+   "amount":100000.0000,
+   "fromAccountId":3,
+   "toAccountId":4
 }
-Duplicated account response: Status: 400 Bad Request
+```
 
-Account with ID:2 already exists. 
-Duplicates are not allowed.
-/{id} - account id GET - retrieves all accounts from database
+Implementation Details
 
-Response: Status: 200 OK
+AccountService and FundsTransferService are implementation of the above Rest endpoints also takes concurrency into desing consideration.
+TestAccountService and TestFundsTransferService are Testcases which test above Implementation
 
-{
-    "id": "97463a3b-8ad9-4ad5-ae7a-37d3807795f7",
-    "balance": 55.3
-}
-Account doesn't exist: Status: 204 No Content
 
-Transaction API - /transactions
-POST - submit new transaction
+## Http Status 
 
-Request Body - MoneyTransfer object
+```
+200 OK: The request has succeeded
+```
 
-Sample request:
+```
+400 Bad Request: The request could not be understood by the server 
+```
 
-{
-	"source":"1",
-	"target":"2",
-	"balance":"5.0"
-}
-Sample response: Status: 200 OK
+```
+404 Not Found: The requested resource cannot be found
+```
 
-[
-    {
-        "id": "1",
-        "balance": "45"
-    },
-    {
-        "id": "2",
-        "balance": "10"
-    }
-]
-Insufficient balance on source account: Status: 409 Conflict
+```
+500 Internal Server Error: The server encountered an unexpected condition
 
-Money Transfer cant be performed due to lack of funds on the account.
-One of the party accounts doesn't exist: Status: 400 Bad Request
 
-Account(s) doesnt exist. | Source: null, Target: Account{id=2, balance=10}
+
+
+

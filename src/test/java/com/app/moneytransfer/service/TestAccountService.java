@@ -36,7 +36,7 @@ public class TestAccountService extends TestService {
      */
     @Test
     public void testGetAccount() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/account/"+fromAcctId).build();
+        URI uri = builder.setPath("/moneyTransfer/account/"+fromAcctId).build();
         HttpGet request = new HttpGet(uri);
         HttpResponse response = client.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
@@ -53,7 +53,7 @@ public class TestAccountService extends TestService {
      */
     @Test
     public void testGetAllAccounts() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/account/all").build();
+        URI uri = builder.setPath("/moneyTransfer/account/all").build();
         HttpGet request = new HttpGet(uri);
         HttpResponse response = client.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
@@ -71,7 +71,7 @@ public class TestAccountService extends TestService {
      */
     @Test
     public void testGetAccountBalance() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/account/1/balance").build();
+        URI uri = builder.setPath("/moneyTransfer/account/1/balance").build();
         HttpGet request = new HttpGet(uri);
         HttpResponse response = client.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
@@ -91,7 +91,7 @@ public class TestAccountService extends TestService {
     @Before
     @Test
     public void testCreateAccount() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/account/create").build();
+        URI uri = builder.setPath("/moneyTransfer/account/create").build();
         BigDecimal balance = new BigDecimal(10).setScale(2, RoundingMode.HALF_EVEN);
         Account acc = new Account("createdAccount", balance, "CNY");
         String jsonInString = mapper.writeValueAsString(acc);
@@ -116,7 +116,7 @@ public class TestAccountService extends TestService {
      */
     @Test
     public void testDeleteAccount() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/account/6").build();
+        URI uri = builder.setPath("/moneyTransfer/account/6").build();
         HttpDelete request = new HttpDelete(uri);
         request.setHeader("Content-type", "application/json");
         HttpResponse response = client.execute(request);
@@ -131,7 +131,7 @@ public class TestAccountService extends TestService {
      */
     @Test
     public void testDeleteNonExistingAccount() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/account/300").build();
+        URI uri = builder.setPath("/moneyTransfer/account/300").build();
         HttpDelete request = new HttpDelete(uri);
         request.setHeader("Content-type", "application/json");
         HttpResponse response = client.execute(request);

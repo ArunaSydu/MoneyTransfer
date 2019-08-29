@@ -34,7 +34,7 @@ public class TestFundsTransferService extends TestService {
      */
     @Test
     public void testDeposit() throws IOException, URISyntaxException {       
-        URI uri = builder.setPath("/account/"+fromAcctId+"/deposit/100").build();
+        URI uri = builder.setPath("/moneyTransfer/account/"+fromAcctId+"/deposit/100").build();
         HttpPost request = new HttpPost(uri);
         request.setHeader("Content-type", "application/json");
         HttpResponse response = client.execute(request);
@@ -53,7 +53,7 @@ public class TestFundsTransferService extends TestService {
      */
     @Test
     public void testWithDrawSufficientFund() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/account/"+fromAcctId+"/withdraw/1").build();
+        URI uri = builder.setPath("/moneyTransfer/account/"+fromAcctId+"/withdraw/1").build();
         HttpPost request = new HttpPost(uri);
         request.setHeader("Content-type", "application/json");
         HttpResponse response = client.execute(request);
@@ -72,7 +72,7 @@ public class TestFundsTransferService extends TestService {
      */
     @Test
     public void testWithDrawNonSufficientFund() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/account/"+fromAcctId+"/withdraw/1000").build();
+        URI uri = builder.setPath("/moneyTransfer/account/"+fromAcctId+"/withdraw/1000").build();
         HttpPost request = new HttpPost(uri);
         request.setHeader("Content-type", "application/json");
         HttpResponse response = client.execute(request);
@@ -109,7 +109,7 @@ public class TestFundsTransferService extends TestService {
 
         public void run() {
             try {
-                URI uri = builder.setPath("/transaction/transferFund").build();
+                URI uri = builder.setPath("/moneyTransfer/transaction/transferFund").build();
                 BigDecimal amount = new BigDecimal(1).setScale(2, RoundingMode.HALF_EVEN);
                 UserTransactionDTORequest transaction = new UserTransactionDTORequest("EUR", amount, fromAcctId,toAcctId);
                 String jsonInString = mapper.writeValueAsString(transaction);
@@ -133,7 +133,7 @@ public class TestFundsTransferService extends TestService {
      */
     @Test
     public void testTransactionNotEnoughFund() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/transaction/transferFund").build();
+        URI uri = builder.setPath("/moneyTransfer/transaction/transferFund").build();
         BigDecimal amount = new BigDecimal(50000000).setScale(2, RoundingMode.HALF_EVEN);
         UserTransactionDTORequest transaction = new UserTransactionDTORequest("EUR", amount, fromAcctId, toAcctId);
         String jsonInString = mapper.writeValueAsString(transaction);

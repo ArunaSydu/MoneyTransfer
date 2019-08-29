@@ -2,20 +2,18 @@ package com.app.moneytransfer.service;
 
 import com.app.moneytransfer.exception.MoneyTransferExceptionHandler;
 import com.app.moneytransfer.model.Account;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.servlet.ServletContainer;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 
 import java.math.BigDecimal;
 

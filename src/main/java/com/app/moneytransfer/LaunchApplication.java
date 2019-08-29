@@ -45,16 +45,12 @@ public class LaunchApplication {
 		servletHolder.setInitParameter(INIT_PARAM,					
 						AccountService.class.getCanonicalName() + ","
 						+  FundsTransferService.class.getCanonicalName()+","
-						+  MoneyTransferExceptionHandler.class.getCanonicalName());
-		try {
-			server.start();
+						+  MoneyTransferExceptionHandler.class.getCanonicalName());		
+			server.start();			
 			long fromAccountId = createAccount("FromAccountName",BigDecimal.valueOf(100));
 			long toAccountId = createAccount("ToAccountName",BigDecimal.valueOf(100));
-			System.out.println(" fromAccountId "+fromAccountId + " toAccountId "+toAccountId );
-			server.join();
-		} finally {
-			server.destroy();
-		}
+			System.out.println(" fromAccountId "+fromAccountId + " toAccountId "+toAccountId );		
+			System.out.println(" ########## Server Started #############");
 	}
 
 

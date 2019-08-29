@@ -17,7 +17,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * Account Service 
  */
-@Path("/account")
+@Path("/moneyTransfer/account")
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountService implements IAccountService {
 	

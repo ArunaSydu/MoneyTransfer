@@ -1,10 +1,8 @@
 package com.app.moneytransfer.service;
 
-import com.app.moneytransfer.dao.AccountDAOImpl;
 import com.app.moneytransfer.dto.UserTransactionDTORequest;
 import com.app.moneytransfer.exception.UserValidationException;
 import com.app.moneytransfer.model.Account;
-import com.app.moneytransfer.util.HibernateUtil;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,7 +17,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Aruna
  * TransactionService 
  */
-@Path("/transaction")
+@Path("/moneyTransfer/transaction")
 @Produces(MediaType.APPLICATION_JSON)
 public class FundsTransferService implements IFundsTransferService {
 

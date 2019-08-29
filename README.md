@@ -1,8 +1,12 @@
 # MoneyTransfer
 Sample application with RestFul Endpoint with below operations supporting concurrent calls
+
 1.AccountCreation
+
 2.Debit
+
 3.Credit
+
 4.FundsTransfer 
 
 Application starts webserver on http://localhost:8083 by default when LaunchApplication.java is Ran as a Main Application.
@@ -11,6 +15,7 @@ Jetty - as a server layer
 JAX-RS implementation
 JUnit 5 - as a unit test framework
 h2database - inmemory databse
+
 Application may be started from standalone jar:
 
 java -jar money-transfer-1.0.0-SNAPSHOT.jar
